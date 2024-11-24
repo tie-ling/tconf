@@ -160,7 +160,7 @@
         networkmanagerapplet
         xarchiver
         # writting letters
-        texliveConTeXt
+        (texliveConTeXt.withPackages (ps: with ps; [ fandol ]))
         # informatik
         python3
         sqlite
@@ -179,6 +179,8 @@
   fonts.packages = builtins.attrValues {
     inherit (pkgs)
       dejavu_fonts
+      babelstone-han
+      noto-fonts-cjk-serif
       noto-fonts-cjk-sans
       julia-mono
       font-awesome
