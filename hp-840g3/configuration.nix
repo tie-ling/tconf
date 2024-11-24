@@ -86,12 +86,11 @@ in
       ];
       monospace = [
         "JuliaMono"
-        "DejaVu Sans Mono"
         "Noto Sans Mono CJK SC"
       ];
       serif = [
         "DejaVu Serif"
-        "Noto Sans CJK SC"
+        "Noto Serif CJK SC"
       ];
     };
   };
