@@ -10,6 +10,9 @@
   ...
 }:
 
+let
+  mytex = pkgs.texliveConTeXt.withPackages (ps: with ps; [ fandol ]);
+in
 {
 
   boot.loader.systemd-boot.enable = true;
@@ -129,7 +132,7 @@
             pyim-basedict
             company
             ledger-mode
-          ;
+            ;
           inherit (epkgs.treesit-grammars) with-all-grammars;
         }
       )
@@ -143,31 +146,32 @@
     yc = {
       initialHashedPassword = "$y$j9T$S0WLvSG97zHExGCytM8L1/$wKCuLpnhARX5.ErsS9dGKpSLeTuHJ9iD3Kb/O5ZGJe4";
       description = "Yuchen Guo";
-      packages = with pkgs; [
-        nautilus
-        qrencode
-        xournalpp
-        mpv
-        yt-dlp
-        chromium
-        libreoffice
-        evince
-        zathura
-        mupdf
-        xfce.mousepad
-        brightnessctl
-        pavucontrol
-        networkmanagerapplet
-        xarchiver
-        # writting letters
-        (texliveConTeXt.withPackages (ps: with ps; [ fandol ]))
-        # informatik
-        python3
-        sqlite
-        # end informatik
-        # bookkeeping with emacs
-        ledger
-      ];
+      packages =
+        with pkgs;
+        [
+          nautilus
+          qrencode
+          xournalpp
+          mpv
+          yt-dlp
+          chromium
+          libreoffice
+          evince
+          zathura
+          mupdf
+          xfce.mousepad
+          brightnessctl
+          pavucontrol
+          networkmanagerapplet
+          xarchiver
+          # informatik
+          python3
+          sqlite
+          # end informatik
+          # bookkeeping with emacs
+          ledger
+        ]
+        ++ [ mytex ];
       extraGroups = [
         # use doas
         "wheel"
@@ -186,6 +190,13 @@
       font-awesome
       ;
   };
+  fonts.fontconfig.localConf = ''
+    <?xml version='1.0'?>
+    <!DOCTYPE fontconfig SYSTEM 'fonts.dtd'>
+    <fontconfig>
+     <dir>${mytex}/share/texmf/fonts</dir>
+    </fontconfig>
+  '';
   xdg.portal = {
     enable = true;
     wlr.enable = true;
