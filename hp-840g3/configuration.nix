@@ -205,7 +205,11 @@ in
     enable = true;
   };
   hardware.graphics.extraPackages = with pkgs; [ intel-media-driver ];
-
+  services.offlineimap = {
+    enable = true;
+    install = true;
+    onCalendar = "*:0/15";
+  };
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
