@@ -172,6 +172,7 @@ in
           ledger
           # emails
           notmuch
+          isync
         ]
         ++ [ mytex ];
       extraGroups = [
@@ -208,10 +209,23 @@ in
     enable = true;
   };
   hardware.graphics.extraPackages = with pkgs; [ intel-media-driver ];
-  services.offlineimap = {
-    enable = true;
-    install = true;
-    onCalendar = "*:0/15";
+  systemd.user.services.isync = {
+    description = "Free IMAP and MailDir mailbox synchronizer";
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.isync}/bin/mbsync -a";
+      TimeoutStartSec = "120s";
+    };
+  };
+  systemd.user.timers.isync = {
+    description = "isync timer";
+    timerConfig = {
+      Unit = "isync.service";
+      OnCalendar = "*:0/15";
+      # start immediately after computer is started:
+      Persistent = "true";
+    };
+    wantedBy = [ "default.target" ];
   };
   programs.msmtp = {
     enable = true;
