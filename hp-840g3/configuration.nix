@@ -214,7 +214,7 @@ in
     serviceConfig = {
       Type = "oneshot";
       ExecStart = "${pkgs.isync}/bin/mbsync --all --quiet";
-      ExecStartPost = "${pkgs.notmuch}/bin/notmuch new --quiet --decrypt=false";
+      ExecStartPost = "${pkgs.notmuch}/bin/notmuch new --decrypt=false";
       TimeoutStartSec = "120s";
     };
     path = [ pkgs.notmuch ];
