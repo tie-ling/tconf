@@ -210,6 +210,27 @@ in
     install = true;
     onCalendar = "*:0/15";
   };
+  programs.msmtp = {
+    enable = true;
+    defaults = {
+# Set default values: use the mail submission port 587, and always use TLS.
+# On this port, TLS is activated via STARTTLS.
+      auth = true;
+      tls = true;
+      port = 587;
+      tls_starttls = true;
+    };
+    accounts = {
+      Private = {
+        host = "smtp.gmail.com";
+        from = "gyuchen86@gmail.com";
+        user = "gyuchen86@gmail.com";
+        passwordeval = "cat /etc/msmtp-secretpass";
+      };
+    };
+    extraConfig = "account default : Personal";
+    setSendmail = true;
+  };
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
