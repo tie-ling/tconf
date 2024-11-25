@@ -131,6 +131,7 @@ in
             pyim-basedict
             company
             ledger-mode
+            notmuch
             ;
           inherit (epkgs.treesit-grammars) with-all-grammars;
         }
@@ -169,6 +170,8 @@ in
           # end informatik
           # bookkeeping with emacs
           ledger
+          # emails
+          notmuch
         ]
         ++ [ mytex ];
       extraGroups = [
@@ -213,8 +216,8 @@ in
   programs.msmtp = {
     enable = true;
     defaults = {
-# Set default values: use the mail submission port 587, and always use TLS.
-# On this port, TLS is activated via STARTTLS.
+      # Set default values: use the mail submission port 587, and always use TLS.
+      # On this port, TLS is activated via STARTTLS.
       auth = true;
       tls = true;
       port = 587;
