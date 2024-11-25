@@ -213,7 +213,7 @@ in
     description = "Free IMAP and MailDir mailbox synchronizer";
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "${pkgs.isync}/bin/mbsync -a";
+      ExecStart = "${pkgs.isync}/bin/mbsync --all --quiet";
       TimeoutStartSec = "120s";
     };
   };
