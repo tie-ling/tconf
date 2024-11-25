@@ -240,7 +240,7 @@ in
       tls_starttls = true;
     };
     accounts = {
-      Private = {
+      Personal = {
         host = "smtp.gmail.com";
         from = "gyuchen86@gmail.com";
         user = "gyuchen86@gmail.com";
