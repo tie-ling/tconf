@@ -209,6 +209,9 @@ in
     enable = true;
   };
   hardware.graphics.extraPackages = with pkgs; [ intel-media-driver ];
+  # after editing this user service and timer; re-enable them to apply changes
+  # systemctl disable --user isync.service
+  # systemctl enable --user isync.service
   systemd.user.services.isync = {
     description = "Free IMAP and MailDir mailbox synchronizer";
     serviceConfig = {
