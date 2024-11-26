@@ -164,8 +164,10 @@ in
           pavucontrol
           networkmanagerapplet
           xarchiver
-          # informatik
-          python3
+          # python number one!!!
+          (pkgs.python3.withPackages (python-pkgs: [
+            python-pkgs.notmuch
+          ]))
           sqlite
           # end informatik
           # bookkeeping with emacs
