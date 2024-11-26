@@ -247,7 +247,7 @@ in
         host = "smtp.gmail.com";
         from = "gyuchen86@gmail.com";
         user = "gyuchen86@gmail.com";
-        passwordeval = "cat /etc/msmtp-secretpass";
+        passwordeval = "cat /etc/pass-gmail";
       };
     };
     extraConfig = "account default : Personal";
