@@ -12,6 +12,10 @@
 
 let
   mytex = pkgs.texliveConTeXt.withPackages (ps: with ps; [ fandol ]);
+  mypy = pkgs.python3.withPackages (python-pkgs: [
+    python-pkgs.notmuch
+  ]);
+
 in
 {
 
@@ -165,9 +169,6 @@ in
           networkmanagerapplet
           xarchiver
           # python number one!!!
-          (pkgs.python3.withPackages (python-pkgs: [
-            python-pkgs.notmuch
-          ]))
           sqlite
           # end informatik
           # bookkeeping with emacs
@@ -176,7 +177,10 @@ in
           notmuch
           isync
         ]
-        ++ [ mytex ];
+        ++ [
+          mytex
+          mypy
+        ];
       extraGroups = [
         # use doas
         "wheel"
@@ -222,7 +226,10 @@ in
       ExecStartPost = "${pkgs.notmuch}/bin/notmuch new --decrypt=false";
       TimeoutStartSec = "120s";
     };
-    path = [ pkgs.notmuch ];
+    path = [
+      pkgs.notmuch
+      mypy
+    ];
   };
   systemd.user.timers.isync = {
     description = "isync timer";
