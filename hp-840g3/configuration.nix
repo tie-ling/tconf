@@ -136,6 +136,7 @@ in
             company
             ledger-mode
             notmuch
+            haskell-mode
             ;
           inherit (epkgs.treesit-grammars) with-all-grammars;
         }
@@ -168,7 +169,14 @@ in
           pavucontrol
           networkmanagerapplet
           xarchiver
-          # python number one!!!
+          # haskell
+          # https://nixos.org/manual/nixpkgs/unstable/#haskell-development-environments
+          # https://haskell4nix.readthedocs.io/nixpkgs-users-guide.html#how-to-create-a-development-environment
+          # https://haskell-language-server.readthedocs.io/en/latest/configuration.html#emacs
+          ghc
+          haskell-language-server
+          cabal-install
+
           sqlite
           # end informatik
           # bookkeeping with emacs
