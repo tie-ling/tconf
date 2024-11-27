@@ -169,6 +169,7 @@ in
           pavucontrol
           networkmanagerapplet
           xarchiver
+          # learn haskell and java
           # haskell
           # https://nixos.org/manual/nixpkgs/unstable/#haskell-development-environments
           # https://haskell4nix.readthedocs.io/nixpkgs-users-guide.html#how-to-create-a-development-environment
@@ -176,7 +177,10 @@ in
           ghc
           haskell-language-server
           cabal-install
-
+          # java
+          jdk
+          maven
+          # informatik; learn sql
           sqlite
           # end informatik
           # bookkeeping with emacs
