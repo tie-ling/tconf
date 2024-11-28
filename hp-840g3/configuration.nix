@@ -174,6 +174,7 @@ in
           # https://nixos.org/manual/nixpkgs/unstable/#haskell-development-environments
           # https://haskell4nix.readthedocs.io/nixpkgs-users-guide.html#how-to-create-a-development-environment
           # https://haskell-language-server.readthedocs.io/en/latest/configuration.html#emacs
+          w3m
           ghc
           haskell-language-server
           cabal-install
