@@ -237,7 +237,7 @@ in
       Type = "oneshot";
       ExecStart = "${pkgs.isync}/bin/mbsync --all --quiet";
       ExecStartPost = "${pkgs.notmuch}/bin/notmuch new --decrypt=false";
-      TimeoutStartSec = "120s";
+      TimeoutStartSec = "360s";
     };
     path = [
       pkgs.notmuch
