@@ -11,7 +11,8 @@
 }:
 
 let
-  mytex = pkgs.texliveConTeXt.withPackages (ps: with ps; [ fandol ]);
+  # includes pdftex and luatex
+  mytex = pkgs.texliveBasic.withPackages (ps: with ps; [ fandol ]);
   mypy = pkgs.python3.withPackages (python-pkgs: [
     python-pkgs.notmuch
   ]);
