@@ -177,7 +177,8 @@ in
           xarchiver
           # learn haskell and java and rust
           # c and c++
-          stdenv
+          gcc
+          cmake
           # rust
           cargo
           rustc
