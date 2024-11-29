@@ -179,6 +179,7 @@ in
           # learn haskell and java and rust
           # c and c++
           gcc
+          gnumake
           cmake
           # rust
           cargo
