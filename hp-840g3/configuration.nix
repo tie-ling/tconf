@@ -30,6 +30,12 @@ in
 
   # nix.settings.substituters = [ "https://mirror.sjtu.edu.cn/nix-channels/store" ];
   programs.sway.enable = true;
+  programs.sway.extraSessionCommands = ''
+      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+      # Fix for some Java AWT applications (e.g. Android Studio),
+      # use this if they aren't displayed properly:
+      export _JAVA_AWT_WM_NONREPARENTING=1
+  '';
   programs.sway.extraPackages = with pkgs; [
     foot
     swaylock
@@ -169,7 +175,13 @@ in
           pavucontrol
           networkmanagerapplet
           xarchiver
-          # learn haskell and java
+          # learn haskell and java and rust
+          # c and c++
+          # https://nixos.wiki/wiki/Using_Clang_instead_of_GCC
+          clangStdenv
+          # rust
+          cargo
+          rustc
           # haskell
           # https://nixos.org/manual/nixpkgs/unstable/#haskell-development-environments
           # https://haskell4nix.readthedocs.io/nixpkgs-users-guide.html#how-to-create-a-development-environment
