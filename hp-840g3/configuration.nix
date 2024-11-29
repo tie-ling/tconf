@@ -128,6 +128,15 @@ in
   };
   users.mutableUsers = false;
   services.upower.enable = true;
+  programs.bash.shellInit = ''
+  nixosbuildsw () {
+    chown -R root /home/yc/tconf/ && nixos-rebuild switch --flake /home/yc/tconf/ && chown -R  yc /home/yc/tconf
+  }
+  nixosbuildbo () {
+    chown -R root /home/yc/tconf/ && nixos-rebuild boot --flake /home/yc/tconf/ && chown -R  yc /home/yc/tconf
+  }
+
+'';
   services.emacs = {
     enable = true;
     package = (
