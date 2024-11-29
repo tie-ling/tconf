@@ -177,8 +177,7 @@ in
           xarchiver
           # learn haskell and java and rust
           # c and c++
-          # https://nixos.wiki/wiki/Using_Clang_instead_of_GCC
-          clangStdenv
+          stdenv
           # rust
           cargo
           rustc
