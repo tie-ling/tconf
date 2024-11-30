@@ -35,6 +35,7 @@ in
     export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
     # Fix for some Java AWT applications (e.g. Android Studio),
     # use this if they aren't displayed properly:
+    export _JAVA_OPTIONS="-Dawt.toolkit.name=WLToolkit -Dsun.java2d.vulkan=True"
     export _JAVA_AWT_WM_NONREPARENTING=1
   '';
   programs.sway.extraPackages = with pkgs; [
