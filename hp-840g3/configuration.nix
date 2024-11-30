@@ -32,10 +32,10 @@ in
   # nix.settings.substituters = [ "https://mirror.sjtu.edu.cn/nix-channels/store" ];
   programs.sway.enable = true;
   programs.sway.extraSessionCommands = ''
-      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-      # Fix for some Java AWT applications (e.g. Android Studio),
-      # use this if they aren't displayed properly:
-      export _JAVA_AWT_WM_NONREPARENTING=1
+    export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+    # Fix for some Java AWT applications (e.g. Android Studio),
+    # use this if they aren't displayed properly:
+    export _JAVA_AWT_WM_NONREPARENTING=1
   '';
   programs.sway.extraPackages = with pkgs; [
     foot
@@ -129,14 +129,14 @@ in
   users.mutableUsers = false;
   services.upower.enable = true;
   programs.bash.shellInit = ''
-  nixosbuildsw () {
-    chown -R root /home/yc/tconf/ && nixos-rebuild switch --flake /home/yc/tconf/ && chown -R  yc /home/yc/tconf
-  }
-  nixosbuildbo () {
-    chown -R root /home/yc/tconf/ && nixos-rebuild boot --flake /home/yc/tconf/ && chown -R  yc /home/yc/tconf
-  }
+    nixosbuildsw () {
+      chown -R root /home/yc/tconf/ && nixos-rebuild switch --flake /home/yc/tconf/ && chown -R  yc /home/yc/tconf
+    }
+    nixosbuildbo () {
+      chown -R root /home/yc/tconf/ && nixos-rebuild boot --flake /home/yc/tconf/ && chown -R  yc /home/yc/tconf
+    }
 
-'';
+  '';
   services.emacs = {
     enable = true;
     package = (
@@ -175,6 +175,12 @@ in
           xournalpp
           mpv
           yt-dlp
+          # has wayland support
+          # https://wiki.openjdk.org/display/wakefield/Pure+Wayland+toolkit+prototype
+          (pkgs.josm.override {
+            jre = pkgs.jetbrains.jdk-no-jcef;
+            extraJavaOpts = "-Djosm.restart=true -Djava.net.useSystemProxies=true -Dawt.toolkit.name=WLToolkit -Dsun.java2d.vulkan=True";
+          })
           chromium
           libreoffice
           evince
@@ -201,9 +207,9 @@ in
           ghc
           haskell-language-server
           cabal-install
-          # java
-          jdk
-          maven
+          # java; with wayland
+          jetbrains.jdk-no-jcef
+          (pkgs.maven.override { jdk = pkgs.jetbrains.jdk-no-jcef; })
           # informatik; learn sql
           sqlite
           # end informatik
