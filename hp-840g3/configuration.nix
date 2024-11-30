@@ -231,6 +231,12 @@ in
       isNormalUser = true;
     };
   };
+  programs.java = {
+    enable = true;
+    # has wayland support
+    # https://wiki.openjdk.org/display/wakefield/Pure+Wayland+toolkit+prototype
+    package = pkgs.jetbrains.jdk-no-jcef;
+  };
   fonts.packages = builtins.attrValues {
     inherit (pkgs)
       dejavu_fonts
