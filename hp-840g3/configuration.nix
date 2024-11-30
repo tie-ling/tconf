@@ -37,6 +37,9 @@ in
     # use this if they aren't displayed properly:
     export _JAVA_OPTIONS="-Dawt.toolkit.name=WLToolkit -Dsun.java2d.vulkan=True"
     export _JAVA_AWT_WM_NONREPARENTING=1
+
+    export ELECTRON_OZONE_PLATFORM_HINT=wayland
+    export QT_QPA_PLATFORM=wayland
   '';
   programs.sway.extraPackages = with pkgs; [
     foot
