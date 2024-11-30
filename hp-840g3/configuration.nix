@@ -209,7 +209,7 @@ in
           cabal-install
           # java; with wayland
           jetbrains.jdk-no-jcef
-          (pkgs.maven.override { jdk = pkgs.jetbrains.jdk-no-jcef; })
+          (pkgs.maven.override { jdk_headless = pkgs.jetbrains.jdk-no-jcef; })
           # informatik; learn sql
           sqlite
           # end informatik
