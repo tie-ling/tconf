@@ -178,8 +178,6 @@ in
           xournalpp
           mpv
           yt-dlp
-          # has wayland support
-          # https://wiki.openjdk.org/display/wakefield/Pure+Wayland+toolkit+prototype
           josm
           chromium
           libreoffice
@@ -190,6 +188,7 @@ in
           brightnessctl
           pavucontrol
           networkmanagerapplet
+          w3m
           xarchiver
           # learn haskell and java and rust
           # c and c++
@@ -203,11 +202,10 @@ in
           # https://nixos.org/manual/nixpkgs/unstable/#haskell-development-environments
           # https://haskell4nix.readthedocs.io/nixpkgs-users-guide.html#how-to-create-a-development-environment
           # https://haskell-language-server.readthedocs.io/en/latest/configuration.html#emacs
-          w3m
           ghc
           haskell-language-server
           cabal-install
-          # java; with wayland
+          # java; also see programs.java.enable option
           (pkgs.maven.override {
             jdk_headless = (
               pkgs.jdk.override {
