@@ -35,7 +35,6 @@ in
     export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
     # Fix for some Java AWT applications (e.g. Android Studio),
     # use this if they aren't displayed properly:
-    export _JAVA_OPTIONS="-Dawt.toolkit.name=WLToolkit -Dsun.java2d.vulkan=True"
     export _JAVA_AWT_WM_NONREPARENTING=1
 
     export ELECTRON_OZONE_PLATFORM_HINT=wayland
@@ -181,10 +180,7 @@ in
           yt-dlp
           # has wayland support
           # https://wiki.openjdk.org/display/wakefield/Pure+Wayland+toolkit+prototype
-          (pkgs.josm.override {
-            jre = pkgs.jetbrains.jdk-no-jcef;
-            extraJavaOpts = "-Djosm.restart=true -Djava.net.useSystemProxies=true -Dawt.toolkit.name=WLToolkit -Dsun.java2d.vulkan=True";
-          })
+          josm
           chromium
           libreoffice
           evince
@@ -212,8 +208,13 @@ in
           haskell-language-server
           cabal-install
           # java; with wayland
-          jetbrains.jdk-no-jcef
-          (pkgs.maven.override { jdk_headless = pkgs.jetbrains.jdk-no-jcef; })
+          (pkgs.maven.override {
+            jdk_headless = (
+              pkgs.jdk.override {
+                enableJavaFX = true;
+              }
+            );
+          })
           # informatik; learn sql
           sqlite
           # end informatik
@@ -239,7 +240,11 @@ in
     enable = true;
     # has wayland support
     # https://wiki.openjdk.org/display/wakefield/Pure+Wayland+toolkit+prototype
-    package = pkgs.jetbrains.jdk-no-jcef;
+    package = (
+      pkgs.jdk.override {
+        enableJavaFX = true;
+      }
+    );
   };
   fonts.packages = builtins.attrValues {
     inherit (pkgs)
