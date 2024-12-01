@@ -153,16 +153,20 @@ in
         epkgs:
         builtins.attrValues {
           inherit (epkgs)
-            nix-mode
+            # git porcelain
             magit
+            # pinyin
             pyim
             pyim-basedict
-            company
+            # auto complete
+            counsel
+            # accounting
             ledger-mode
+            # emails
             notmuch
-            haskell-mode
+            # nix; haskell; context
             ;
-          inherit (epkgs.treesit-grammars) with-all-grammars;
+            inherit (epkgs.treesit-grammars) with-all-grammars;
         }
       )
     );
