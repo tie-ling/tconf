@@ -171,6 +171,10 @@ in
     startWithGraphical = true;
   };
   security.chromiumSuidSandbox.enable = true;
+  # show size with
+  # nix path-info -rS /run/current-system | sort -nk2
+  nix.gc.automatic = true;
+  nix.optimise.automatic = true;
   users.users = {
     yc = {
       initialHashedPassword = "$y$j9T$S0WLvSG97zHExGCytM8L1/$wKCuLpnhARX5.ErsS9dGKpSLeTuHJ9iD3Kb/O5ZGJe4";
@@ -208,7 +212,6 @@ in
           # https://haskell4nix.readthedocs.io/nixpkgs-users-guide.html#how-to-create-a-development-environment
           # https://haskell-language-server.readthedocs.io/en/latest/configuration.html#emacs
           ghc
-          haskell-language-server
           cabal-install
           # java; also see programs.java.enable option
           (pkgs.maven.override {
