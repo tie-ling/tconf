@@ -1,20 +1,19 @@
+# https://raw.githubusercontent.com/nix-community/disko/master/example/hybrid.nix
 {
-  # see https://github.com/nix-community/disko/tree/master/example
   disko.devices = {
     disk = {
       main = {
         type = "disk";
-        device = "/dev/disk/by-id/nvme-SAMSUNG_MZVLV256HCHP-000H1_S2CSNA0J547878";
+        device = "/dev/disk/by-id/nvme-BC711_NVMe_SK_hynix_128GB__CN0BN79341050C76B";
         content = {
           type = "gpt";
           partitions = {
-            # gpt-bios-compat
             boot = {
               size = "1M";
               type = "EF02"; # for grub MBR
             };
             ESP = {
-              size = "1024M";
+              size = "512M";
               type = "EF00";
               content = {
                 type = "filesystem";
@@ -23,18 +22,13 @@
                 mountOptions = [ "umask=0077" ];
               };
             };
-            luks = {
+            # unencrypted root
+            root = {
               size = "100%";
               content = {
-                type = "luks";
-                name = "crypted";
-                settings.allowDiscards = true;
-                passwordFile = "/tmp/secret.key";
-                content = {
-                  type = "filesystem";
-                  format = "xfs";
-                  mountpoint = "/";
-                };
+                type = "filesystem";
+                format = "xfs";
+                mountpoint = "/";
               };
             };
           };

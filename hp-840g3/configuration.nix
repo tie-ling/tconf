@@ -413,7 +413,9 @@ in
     }
   ];
   # do not use hardened; interfere with amd sleep and power save
-  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ./disko.nix ];
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+  ];
 
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
@@ -439,7 +441,5 @@ in
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
-
 
 }

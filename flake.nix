@@ -7,7 +7,11 @@
   inputs.disko.inputs.nixpkgs.follows = "nixpkgs";
 
   outputs =
-    { self, nixpkgs, disko }@inputs:
+    {
+      self,
+      nixpkgs,
+      disko,
+    }@inputs:
     {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
       nixosConfigurations.hp-840g3 = nixpkgs.lib.nixosSystem {
@@ -16,6 +20,7 @@
         };
         modules = [
           ./hp-840g3/configuration.nix
+          ./hp-840g3/disko.nix
         ];
       };
 
@@ -25,7 +30,7 @@
         };
         modules = [
           ./server/configuration.nix
-          ./server/hardware-configuration.nix
+          ./server/disko.nix
         ];
       };
       nixosConfigurations.player = nixpkgs.lib.nixosSystem {
@@ -34,7 +39,7 @@
         };
         modules = [
           ./player/configuration.nix
-          ./player/hardware-configuration.nix
+          ./player/disko.nix
         ];
       };
     };
