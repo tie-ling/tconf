@@ -1,8 +1,11 @@
 {
   description = "NixOS configuration with flakes";
-  # https://github.com/NixOS/nixpkgs/commits/release-24.11
-  inputs.nixpkgs.url = "nixpkgs/f45667df53b4a4bb7b0bc0fa4fb83e8c0c51add5";
-  # https://github.com/nixos/nixos-hardware
+  # https://channels.nixos.org/nixos-24.11/git-revision
+  # https://channels.nixos.org/nixos-unstable/git-revision
+  inputs.nixpkgs.url = "nixpkgs/970e93b9f82e2a0f3675757eb0bfc73297cc6370";
+  disko.url = "github:nix-community/disko/latest";
+  disko.inputs.nixpkgs.follows = "nixpkgs";
+
   outputs =
     { self, nixpkgs }@inputs:
     {
