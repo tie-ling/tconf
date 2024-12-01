@@ -68,7 +68,6 @@
   # use alsa; which supports hdmi passthrough
   hardware.pulseaudio.enable = false;
   services.pipewire.enable = false;
-  sound.enable = true;
 
   services = {
     tlp = {

@@ -153,10 +153,12 @@
       # 已被禁用。
       enableNmbd = false;
       enableWinbindd = false;
-      extraConfig = ''
-        map to guest = Never
-        server min protocol = SMB3
-      '';
+      settings = {
+        global = {
+          "map to guest" = "Never";
+          "server min protocol" = "SMB3";
+        };
+      };
       shares = {
         # our = {
         #   path = "/home/our";
@@ -247,7 +249,7 @@
       enableIPv4 = true;
       enableIPv6 = true;
       bandwidth = 40960;
-      logLevel = "none";
+      logLevel = "error";
       floodfill = true;
       inTunnels = {
         ssh-server = {
