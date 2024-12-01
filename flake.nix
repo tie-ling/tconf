@@ -19,6 +19,7 @@
           inherit inputs;
         };
         modules = [
+          disko.nixosModules.disko
           ./hp-840g3/configuration.nix
           ./hp-840g3/disko.nix
         ];
@@ -29,6 +30,7 @@
           inherit inputs;
         };
         modules = [
+          disko.nixosModules.disko
           ./server/configuration.nix
           ./server/disko.nix
         ];
@@ -38,6 +40,7 @@
           inherit inputs;
         };
         modules = [
+          disko.nixosModules.disko
           ./player/configuration.nix
           ./player/disko.nix
         ];
