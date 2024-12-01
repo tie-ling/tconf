@@ -1,4 +1,5 @@
 {
+  # see https://github.com/nix-community/disko/tree/master/example
     disko.devices = {
     disk = {
       main = {

@@ -7,34 +7,15 @@
   disko.inputs.nixpkgs.follows = "nixpkgs";
 
   outputs =
-    { self, nixpkgs }@inputs:
+    { self, nixpkgs, disko }@inputs:
     {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
-      nixosConfigurations.yinzhou = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs;
-        };
-        modules = [
-          ./laptop/configuration.nix
-          ./laptop/hardware-configuration.nix
-        ];
-      };
-      nixosConfigurations.dell-7300 = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs;
-        };
-        modules = [
-          ./dell-7300/configuration.nix
-          ./dell-7300/hardware-configuration.nix
-        ];
-      };
       nixosConfigurations.hp-840g3 = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs;
         };
         modules = [
           ./hp-840g3/configuration.nix
-          ./hp-840g3/hardware-configuration.nix
         ];
       };
 
