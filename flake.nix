@@ -3,8 +3,8 @@
   # https://channels.nixos.org/nixos-24.11/git-revision
   # https://channels.nixos.org/nixos-unstable/git-revision
   inputs.nixpkgs.url = "nixpkgs/970e93b9f82e2a0f3675757eb0bfc73297cc6370";
-  disko.url = "github:nix-community/disko/latest";
-  disko.inputs.nixpkgs.follows = "nixpkgs";
+  inputs.disko.url = "github:nix-community/disko/latest";
+  inputs.disko.inputs.nixpkgs.follows = "nixpkgs";
 
   outputs =
     { self, nixpkgs, disko }@inputs:
