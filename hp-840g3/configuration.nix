@@ -149,7 +149,7 @@ in
   services.emacs = {
     enable = true;
     package = (
-      (pkgs.emacsPackagesFor pkgs.emacs29-pgtk).emacsWithPackages (
+      (pkgs.emacsPackagesFor pkgs.emacs30-pgtk).emacsWithPackages (
         epkgs:
         builtins.attrValues {
           inherit (epkgs)
