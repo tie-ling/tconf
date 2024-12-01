@@ -165,6 +165,8 @@ in
             # emails
             notmuch
             # nix; haskell; context
+            nix-ts-mode
+            haskell-ts-mode
             ;
             inherit (epkgs.treesit-grammars) with-all-grammars;
         }
