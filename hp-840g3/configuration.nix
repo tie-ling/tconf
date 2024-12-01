@@ -168,7 +168,7 @@ in
             nix-ts-mode
             haskell-ts-mode
             ;
-            inherit (epkgs.treesit-grammars) with-all-grammars;
+          inherit (epkgs.treesit-grammars) with-all-grammars;
         }
       )
     );
@@ -283,7 +283,10 @@ in
   programs.firefox = {
     enable = true;
   };
-  hardware.graphics.extraPackages = with pkgs; [ intel-media-driver ];
+  # for skylake only
+  hardware.graphics.extraPackages = [
+    (pkgs.intel-vaapi-driver.override { enableHybridCodec = true; })
+  ];
   # after editing this user service and timer; re-enable them to apply changes
   # systemctl disable --user isync.service
   # systemctl enable --user isync.service
