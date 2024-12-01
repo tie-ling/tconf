@@ -284,8 +284,9 @@ in
     enable = true;
   };
   # for skylake only
-  hardware.graphics.extraPackages = [
-    (pkgs.intel-vaapi-driver.override { enableHybridCodec = true; })
+  hardware.graphics.extraPackages = with pkgs; [
+    intel-vaapi-driver # better for skylake compat with firefox and chromium
+    # intel-media-driver
   ];
   # after editing this user service and timer; re-enable them to apply changes
   # systemctl disable --user isync.service
