@@ -13,7 +13,7 @@
 
 let
   # includes pdflatex and lualatex
-  mytex = pkgs.texliveBasic.withPackages (ps: with ps; [ fandol ]);
+  mytex = pkgs.texliveBasic.withPackages (ps: with ps; [ fandol collection-context ]);
   mypy = pkgs.python3.withPackages (python-pkgs: [
     python-pkgs.notmuch
   ]);
@@ -177,8 +177,6 @@ in
           qrencode
           xournalpp
           mpv
-          # replace latex and auctex
-          texmacs
           yt-dlp
           josm
           chromium
