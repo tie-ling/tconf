@@ -148,7 +148,6 @@ in
         epkgs:
         builtins.attrValues {
           inherit (epkgs)
-            auctex
             nix-mode
             magit
             pyim
@@ -178,6 +177,8 @@ in
           qrencode
           xournalpp
           mpv
+          # replace latex and auctex
+          texmacs
           yt-dlp
           josm
           chromium
