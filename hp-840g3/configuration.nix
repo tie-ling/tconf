@@ -12,7 +12,13 @@
 }:
 
 let
-  mytex = pkgs.texliveConTeXt.withPackages (ps: with ps; [ fandol ]);
+  mytex = pkgs.texliveConTeXt.withPackages (
+    ps: with ps; [
+      fandol
+      context-simpleslides
+      context-notes-zh-cn
+    ]
+  );
   mypy = pkgs.python3.withPackages (python-pkgs: [
     python-pkgs.notmuch
   ]);
