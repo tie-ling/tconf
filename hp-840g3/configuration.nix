@@ -222,7 +222,7 @@ in
           # https://haskell-language-server.readthedocs.io/en/latest/configuration.html#emacs
           ghc
           cabal-install
-          hledger
+          hledger_1_40
           hledger-ui
           hledger-web
           ;
