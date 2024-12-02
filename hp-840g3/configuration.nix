@@ -149,29 +149,28 @@ in
   services.emacs = {
     enable = true;
     package = (
-      (pkgs.emacsPackagesFor pkgs.emacs30-pgtk).emacsWithPackages
-        (
-          epkgs:
-          builtins.attrValues {
-            inherit (epkgs)
-              # git porcelain
-              magit
-              # pinyin
-              pyim
-              pyim-basedict
-              # auto complete
-              counsel
-              # accounting
-              ledger-mode
-              # emails
-              notmuch
-              # nix; haskell; context
-              nix-mode
-              haskell-mode
-              ;
-            inherit (epkgs.treesit-grammars) with-all-grammars;
-          }
-        )
+      (pkgs.emacsPackagesFor pkgs.emacs30-pgtk).emacsWithPackages (
+        epkgs:
+        builtins.attrValues {
+          inherit (epkgs)
+            # git porcelain
+            magit
+            # pinyin
+            pyim
+            pyim-basedict
+            # auto complete
+            counsel
+            # accounting
+            ledger-mode
+            # emails
+            notmuch
+            # nix; haskell; context
+            nix-mode
+            haskell-mode
+            ;
+          inherit (epkgs.treesit-grammars) with-all-grammars;
+        }
+      )
     );
     defaultEditor = true;
     install = true;
@@ -186,9 +185,8 @@ in
     yc = {
       initialHashedPassword = "$y$j9T$S0WLvSG97zHExGCytM8L1/$wKCuLpnhARX5.ErsS9dGKpSLeTuHJ9iD3Kb/O5ZGJe4";
       description = "Yuchen Guo";
-      packages =
-        with pkgs;
-        [
+      packages = builtins.attrValues {
+        inherit (pkgs)
           nautilus
           qrencode
           xournalpp
@@ -199,7 +197,6 @@ in
           evince
           zathura
           mupdf
-          xfce.mousepad
           brightnessctl
           pavucontrol
           networkmanagerapplet
@@ -209,25 +206,27 @@ in
           gcc
           gnumake
           cmake
+          # informatik; learn sql
+          sqlite
+          # end informatik
+          # bookkeeping with emacs
+          # emails
+          notmuch
+          isync
+          ;
+        inherit mytex mypy;
+        inherit (pkgs.haskellPackages)
           # haskell
           # https://nixos.org/manual/nixpkgs/unstable/#haskell-development-environments
           # https://haskell4nix.readthedocs.io/nixpkgs-users-guide.html#how-to-create-a-development-environment
           # https://haskell-language-server.readthedocs.io/en/latest/configuration.html#emacs
           ghc
           cabal-install
-          # informatik; learn sql
-          sqlite
-          # end informatik
-          # bookkeeping with emacs
           hledger
-          # emails
-          notmuch
-          isync
-        ]
-        ++ [
-          mytex
-          mypy
-        ];
+          hledger-ui
+          hledger-web
+          ;
+      };
       extraGroups = [
         # use doas
         "wheel"
