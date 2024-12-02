@@ -168,7 +168,6 @@ in
               # nix; haskell; context
               nix-mode
               haskell-mode
-              auctex
               ;
             inherit (epkgs.treesit-grammars) with-all-grammars;
           }
