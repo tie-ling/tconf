@@ -149,12 +149,7 @@ in
   services.emacs = {
     enable = true;
     package = (
-      (pkgs.emacsPackagesFor (
-        pkgs.emacs30-pgtk.override {
-          withNativeCompilation = false;
-
-        }
-      )).emacsWithPackages
+      (pkgs.emacsPackagesFor pkgs.emacs30-pgtk).emacsWithPackages
         (
           epkgs:
           builtins.attrValues {
