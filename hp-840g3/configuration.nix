@@ -149,28 +149,35 @@ in
   services.emacs = {
     enable = true;
     package = (
-      (pkgs.emacsPackagesFor pkgs.emacs30-pgtk).emacsWithPackages (
-        epkgs:
-        builtins.attrValues {
-          inherit (epkgs)
-            # git porcelain
-            magit
-            # pinyin
-            pyim
-            pyim-basedict
-            # auto complete
-            counsel
-            # accounting
-            ledger-mode
-            # emails
-            notmuch
-            # nix; haskell; context
-            nix-ts-mode
-            haskell-ts-mode
-            ;
-          inherit (epkgs.treesit-grammars) with-all-grammars;
+      (pkgs.emacsPackagesFor (
+        pkgs.emacs30-pgtk.override {
+          withNativeCompilation = false;
+
         }
-      )
+      )).emacsWithPackages
+        (
+          epkgs:
+          builtins.attrValues {
+            inherit (epkgs)
+              # git porcelain
+              magit
+              # pinyin
+              pyim
+              pyim-basedict
+              # auto complete
+              counsel
+              # accounting
+              ledger-mode
+              # emails
+              notmuch
+              # nix; haskell; context
+              nix-mode
+              haskell-mode
+              auctex
+              ;
+            inherit (epkgs.treesit-grammars) with-all-grammars;
+          }
+        )
     );
     defaultEditor = true;
     install = true;
@@ -193,7 +200,6 @@ in
           xournalpp
           mpv
           yt-dlp
-          josm
           chromium
           libreoffice
           evince
@@ -205,28 +211,16 @@ in
           networkmanagerapplet
           w3m
           xarchiver
-          # learn haskell and java and rust
-          # c and c++
+          # for emacs compiling treesitters
           gcc
           gnumake
           cmake
-          # rust
-          cargo
-          rustc
           # haskell
           # https://nixos.org/manual/nixpkgs/unstable/#haskell-development-environments
           # https://haskell4nix.readthedocs.io/nixpkgs-users-guide.html#how-to-create-a-development-environment
           # https://haskell-language-server.readthedocs.io/en/latest/configuration.html#emacs
           ghc
           cabal-install
-          # java; also see programs.java.enable option
-          (pkgs.maven.override {
-            jdk_headless = (
-              pkgs.jdk.override {
-                enableJavaFX = true;
-              }
-            );
-          })
           # informatik; learn sql
           sqlite
           # end informatik
@@ -247,16 +241,6 @@ in
       ];
       isNormalUser = true;
     };
-  };
-  programs.java = {
-    enable = true;
-    # has wayland support
-    # https://wiki.openjdk.org/display/wakefield/Pure+Wayland+toolkit+prototype
-    package = (
-      pkgs.jdk.override {
-        enableJavaFX = true;
-      }
-    );
   };
   fonts.packages = builtins.attrValues {
     inherit (pkgs)
