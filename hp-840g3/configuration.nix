@@ -219,7 +219,7 @@ in
           sqlite
           # end informatik
           # bookkeeping with emacs
-          ledger
+          hledger
           # emails
           notmuch
           isync
