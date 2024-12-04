@@ -183,6 +183,9 @@ in
       description = "Yuchen Guo";
       packages = builtins.attrValues {
         inherit (pkgs)
+          # backups
+          rclone
+
           nautilus
           qrencode
           xournalpp
