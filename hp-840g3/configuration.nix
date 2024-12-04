@@ -177,10 +177,6 @@ in
     startWithGraphical = true;
   };
   security.chromiumSuidSandbox.enable = true;
-  # show size with
-  # nix path-info -rS /run/current-system | sort -nk2
-  nix.gc.automatic = true;
-  nix.optimise.automatic = true;
   users.users = {
     yc = {
       initialHashedPassword = "$y$j9T$S0WLvSG97zHExGCytM8L1/$wKCuLpnhARX5.ErsS9dGKpSLeTuHJ9iD3Kb/O5ZGJe4";
