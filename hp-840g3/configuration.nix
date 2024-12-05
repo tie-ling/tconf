@@ -355,7 +355,12 @@ in
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [ mg ];
+  environment.systemPackages = with pkgs; [
+    # mini emacs with utf8 support
+    # multi-buffer, multi-window
+    # https://bellard.org/qemacs/
+    qemacs
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
