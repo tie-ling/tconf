@@ -182,6 +182,14 @@ in
       initialHashedPassword = "$y$j9T$S0WLvSG97zHExGCytM8L1/$wKCuLpnhARX5.ErsS9dGKpSLeTuHJ9iD3Kb/O5ZGJe4";
       description = "Yuchen Guo";
       packages = builtins.attrValues {
+        chromium = (
+          pkgs.chromium.override {
+            commandLineArgs = [
+              "--disable-remote-fonts"
+              "--ozone-platform-hint=auto"
+            ];
+          }
+        );
         inherit (pkgs)
           # backups
           rclone
@@ -191,7 +199,6 @@ in
           xournalpp
           mpv
           yt-dlp
-          chromium
           libreoffice
           evince
           zathura
