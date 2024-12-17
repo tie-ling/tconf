@@ -271,11 +271,6 @@ in
     intel-vaapi-driver # better for skylake compat with firefox and chromium
     # intel-media-driver
   ];
-  services.vaultwarden = {
-    enable = true;
-    backupDir = "/var/backup/vaultwarden";
-  };
-
   # after editing this user service and timer; re-enable them to apply changes
   # systemctl disable --user isync.service
   # systemctl enable --user isync.service
